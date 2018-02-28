@@ -1,0 +1,38 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/Assessmentsvc",
+      "sslPort": 0
+    },
+    "iisExpress": {
+      "applicationUrl": "http://localhost:52777/",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "Start": {
+      "commandName": "Project",
+      "ErrorString": "After parsing a value an unexpected character was encountered: \". Path 'profiles['IIS Express'].environmentVariables.ASPNETCORE_ENVIRONMENT', line 17, position 8.",
+      "applicationUrl": "http://localhost:52777/swagger/v1/swagger.json"
+    },
+    "AssessmentSvc": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:52777/swagger/v1/swagger.json",
+      "environmentVariables": {
+        "MYSQL_PASSWORD": "password",
+        "MYSQL_SERVICE_PORT": "3306",
+        "MYSQL_USER": "root",
+        "MYSQL_SERVICE_HOST": "localhost",
+        "MYSQL_DATABASE": "drrsnlite",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:52777/"
+    },
+    "IIS": {
+      "commandName": "Executable"
+    }
+  }
+}
