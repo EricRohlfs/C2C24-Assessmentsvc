@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assessmentsvc", "Assessmentsvc\Assessmentsvc.csproj", "{3DCE0F29-ED4B-46F4-BC30-830C5336A2D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assessmentsvc", "Assessmentsvc\Assessmentsvc.csproj", "{3DCE0F29-ED4B-46F4-BC30-830C5336A2D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assessmentsvc.Database", "Assessmentsvc.Database\Assessmentsvc.Database.csproj", "{3F97E945-410E-4CB6-8455-D0FC29F50F4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assessmentsvc.Database", "Assessmentsvc.Database\Assessmentsvc.Database.csproj", "{3F97E945-410E-4CB6-8455-D0FC29F50F4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assessmentsvc.Database.Entity", "Assessmentsvc.Database.Entity\Assessmentsvc.Database.Entity.csproj", "{67E02F46-FD78-4CC4-83D9-86EB85A0EC36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assessmentsvc.Database.Entity", "Assessmentsvc.Database.Entity\Assessmentsvc.Database.Entity.csproj", "{67E02F46-FD78-4CC4-83D9-86EB85A0EC36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelHelper", "ExcelHelper\ExcelHelper.csproj", "{58863796-CC99-489F-ADFA-B5A26D2BAB57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelHelper", "ExcelHelper\ExcelHelper.csproj", "{58863796-CC99-489F-ADFA-B5A26D2BAB57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
