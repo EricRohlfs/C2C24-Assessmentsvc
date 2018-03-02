@@ -14,8 +14,9 @@ namespace Api
     {
         public IHostingEnvironment HostingEnvironment { get; }
         public IConfiguration Configuration { get; }
+        public bool UseInMemoryDatabase;
 
-        private bool UseInMemoryDatabase = false;
+
         public Startup(IHostingEnvironment env, IConfiguration config)
         {
             HostingEnvironment = env;
@@ -27,7 +28,10 @@ namespace Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+            UseInMemoryDatabase = Configuration["USE_IN_MEMORY_DATABASE"] == "true" ? true:false;
+
             if (UseInMemoryDatabase)
             {
                 services.AddDbContext<AssessmentsContext>(opt => opt.UseInMemoryDatabase("Assessmentsvc.Database"));
@@ -40,13 +44,14 @@ namespace Api
                 string dbserver = Configuration["MYSQL_SERVICE_HOST"];
                 string dbport = Configuration["MYSQL_SERVICE_PORT"];
                 var connection = "Server=" + Configuration["MYSQL_SERVICE_HOST"]+"; Port = "+Configuration["MYSQL_SERVICE_PORT"]+"; Database = "+Configuration["MYSQL_DATABASE"]+"; Uid= "+ Configuration["MYSQL_USER"]+";Pwd="+ Configuration["MYSQL_PASSWORD"]+";";
-                
+
                 services.AddDbContext<AssessmentsContext>(opt => opt.UseMySql(connection, b => b.MigrationsAssembly("Assessmentsvc.Database")));
             }
+            string cors_origin = Configuration["CORS_ORIGIN"];
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
-                    builder => builder.WithOrigins("http://localhost:5000").AllowAnyHeader());
+                    builder => builder.WithOrigins(cors_origin).AllowAnyHeader());
             });
             services.AddMvc();
             
@@ -69,7 +74,7 @@ namespace Api
                 app.UseBrowserLink();
                 using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 {
-                    if (!serviceScope.ServiceProvider.GetService<AssessmentsContext>().AllMigrationsApplied())
+                    if (!UseInMemoryDatabase && !serviceScope.ServiceProvider.GetService<AssessmentsContext>().AllMigrationsApplied())
                     {
                         serviceScope.ServiceProvider.GetService<AssessmentsContext>().Database.Migrate();
                     }
