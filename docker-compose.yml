@@ -4,5 +4,5 @@ services:
   assessmentsvc:
     image: assessmentsvc
     build:
-      context: ./Assessmentsvc
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Assessmentsvc/Dockerfile

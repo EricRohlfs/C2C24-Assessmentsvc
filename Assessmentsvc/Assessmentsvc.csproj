@@ -17,7 +17,7 @@
       <Variable name="MYSQL_SERVICE HOST" value="localhost" />
       <Variable name="MYSQL_SERVICE_PORT" value="3306" />
       <Variable name="CORS_ORIGIN" value="http://localhost/5000" />
-      <Variable name="USE_IN_MEMORY_DATABASE" value="true" />
+      <Variable name="USE_IN_MEMORY_DATABASE" value="false" />
     </EnvironmentVariables>
     <LaunchUrl>http://localhost:52777/swagger</LaunchUrl>
     <ApplicationURL>http://localhost:52777/</ApplicationURL>

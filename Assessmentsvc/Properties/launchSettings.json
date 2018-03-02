@@ -20,7 +20,7 @@
     "AssessmentSvc": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:52777/swagger/v1/swagger.json",
+      "launchUrl": "http://localhost:52777/swagger/",
       "environmentVariables": {
         "MYSQL_PASSWORD": "password",
         "MYSQL_SERVICE_PORT": "3306",
