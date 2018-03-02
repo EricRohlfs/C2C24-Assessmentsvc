@@ -67,19 +67,19 @@ namespace Api
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
            
-
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                if (!UseInMemoryDatabase && !serviceScope.ServiceProvider.GetService<AssessmentsContext>().AllMigrationsApplied())
+                {
+                    serviceScope.ServiceProvider.GetService<AssessmentsContext>().Database.Migrate();
+                }
+                        serviceScope.ServiceProvider.GetService<AssessmentsContext>().EnsureSeeded();
+            }
+ 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
-                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-                {
-                    if (!UseInMemoryDatabase && !serviceScope.ServiceProvider.GetService<AssessmentsContext>().AllMigrationsApplied())
-                    {
-                        serviceScope.ServiceProvider.GetService<AssessmentsContext>().Database.Migrate();
-                    }
-                         serviceScope.ServiceProvider.GetService<AssessmentsContext>().EnsureSeeded();
-               }
                   
             }
             else

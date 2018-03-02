@@ -5,6 +5,8 @@
     <UserSecretsId>120ad0ea-652d-4128-9891-c8b55c8e057d</UserSecretsId>
 
     <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+
+    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
