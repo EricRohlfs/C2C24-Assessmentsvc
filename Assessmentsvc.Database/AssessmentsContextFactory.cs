@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Assessmentsvc.Database;
 using System.IO;
+using System;
 
 namespace Assessmentsvc.Database
 {
@@ -19,6 +20,8 @@ namespace Assessmentsvc.Database
 
 
             var builder = new DbContextOptionsBuilder<AssessmentsContext>().EnableSensitiveDataLogging(true);
+            
+
             if (configuration["USE_IN_MEMORY_DATABASE"] == "true")
             {
                
@@ -35,8 +38,22 @@ namespace Assessmentsvc.Database
                 string dbserver = configuration["MYSQL_SERVICE_HOST"];
                 string dbport = configuration["MYSQL_SERVICE_PORT"];
                 var mySQLconnectionString = "Server=" + configuration["MYSQL_SERVICE_HOST"] + "; Port = " + configuration["MYSQL_SERVICE_PORT"] + "; Database = " + configuration["MYSQL_DATABASE"] + "; Uid= " + configuration["MYSQL_USER"] + ";Pwd=" + configuration["MYSQL_PASSWORD"] + ";";
+                
+                
+                builder.UseMySql(mySQLconnectionString, mySqlOptionsAction: sqlOptions =>
+                {
 
-                builder.UseMySql(mySQLconnectionString);
+                    sqlOptions.EnableRetryOnFailure(maxRetryCount: 5,
+
+                    maxRetryDelay: TimeSpan.FromSeconds(30),
+
+                    errorNumbersToAdd: null);
+
+                });
+
+
+                
+                
             }
 
             return new AssessmentsContext(builder.Options);

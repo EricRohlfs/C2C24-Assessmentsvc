@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Assessmentsvc.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
@@ -31,7 +32,16 @@ namespace Api
                 string dbserver = Configuration["MYSQL_SERVICE_HOST"];
                 string dbport = Configuration["MYSQL_SERVICE_PORT"];
                 var mySQLconnectionString = "Server=" + Configuration["MYSQL_SERVICE_HOST"] + "; Port = " + Configuration["MYSQL_SERVICE_PORT"] + "; Database = " + Configuration["MYSQL_DATABASE"] + "; Uid= " + Configuration["MYSQL_USER"] + ";Pwd=" + Configuration["MYSQL_PASSWORD"] + ";";
-                builder.UseMySql(mySQLconnectionString);
+                builder.UseMySql(mySQLconnectionString, mySqlOptionsAction: sqlOptions =>
+                {
+
+                    sqlOptions.EnableRetryOnFailure(maxRetryCount: 5,
+
+                    maxRetryDelay: TimeSpan.FromSeconds(30),
+
+                    errorNumbersToAdd: null);
+
+                });
             }
                 return new AssessmentsContext(builder.Options);
         }
