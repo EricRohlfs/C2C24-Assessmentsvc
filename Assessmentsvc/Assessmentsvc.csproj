@@ -65,4 +65,10 @@
     <ProjectReference Include="..\ExcelHelper\ExcelHelper.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Drrsnlite.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
