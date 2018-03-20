@@ -17,11 +17,11 @@ namespace Api
         private string _file;
         private DataSet _seedData;
 
-        public Seed(AssessmentsContext context, string file)
+        public Seed(AssessmentsContext context)
         {
 
             _context = context;
-            _file = Path.GetFullPath(file);
+            _file = "Drrsnlite.xlsx";
             _seedData = GetSeedData();
         }
 

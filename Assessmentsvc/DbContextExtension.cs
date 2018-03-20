@@ -24,7 +24,7 @@ namespace Api
         }
         public static void EnsureSeeded(this AssessmentsContext context)
         {
-            Seed seed = new Seed(context, "Drrsnlite.xlsx");
+            Seed seed = new Seed(context);
             seed.SeedDatabase();
 
         }
